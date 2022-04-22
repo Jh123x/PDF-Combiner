@@ -19,7 +19,7 @@ class PDFConcat(object):
         mergedPDF = PdfFileMerger(strict=False)
         for filename in self.get_pdf_names():
             print(f"Merging {filename}")
-            mergedPDF.append(PdfFileReader(os.path.join(self.path_name,filename), strict=False))
+            mergedPDF.append(PdfFileReader(os.path.join(self.path_name,filename), strict=False), import_bookmarks=False)
         print("Writing to output file")
         mergedPDF.write(output_name)
         print("File saved as {}".format(output_name))
