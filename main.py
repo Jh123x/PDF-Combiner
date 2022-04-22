@@ -16,10 +16,10 @@ class PDFConcat(object):
     
     def concat(self, output_name: str) -> None:
         """Concatenate the PDF files"""
-        mergedPDF = PdfFileMerger()
+        mergedPDF = PdfFileMerger(strict=False)
         for filename in self.get_pdf_names():
             print(f"Merging {filename}")
-            mergedPDF.append(PdfFileReader(os.path.join(self.path_name,filename)))
+            mergedPDF.append(PdfFileReader(os.path.join(self.path_name,filename), strict=False))
         print("Writing to output file")
         mergedPDF.write(output_name)
         print("File saved as {}".format(output_name))
