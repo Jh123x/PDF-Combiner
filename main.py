@@ -14,25 +14,34 @@ class PDFConcat(object):
         return [f for f in os.listdir(self.path_name) if os.path.isfile(os.path.join(self.path_name, f))]
         
     
-    def concat(self) -> None:
+    def concat(self, output_name: str) -> None:
         """Concatenate the PDF files"""
         mergedPDF = PdfFileMerger()
         for filename in self.get_pdf_names():
             print(f"Merging {filename}")
             mergedPDF.append(PdfFileReader(os.path.join(self.path_name,filename)))
         print("Writing to output file")
-        mergedPDF.write("Output.pdf")
+        mergedPDF.write(output_name)
+        print("File saved as {}".format(output_name))
 
 
-def main() -> None:
+def concat_files(dirname: str, output_name: str) -> None:
     """The main function to run the file"""
 
     #Create the PDFConcat obj
-    pdfconcat = PDFConcat('input')
+    pdfconcat = PDFConcat(dirname)
 
     #Create the PDF file
-    pdfconcat.concat()
+    pdfconcat.concat(output_name)
 
 
 if __name__ == '__main__':
-    main()
+    
+    parser = argparse.ArgumentParser(description='PDF Combiner')
+    parser.add_argument('-p', type=str, help='The path to the folder containing the files to combine', default="input", required=False)
+    parser.add_argument('-o', type=str, help="Output of the pdf file", default="output.pdf", required=False)
+
+
+    args = parser.parse_args()
+    concat_files(args.p, args.o)
+    
