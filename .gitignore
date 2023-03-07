@@ -126,3 +126,6 @@ dmypy.json
 
 # Ignore build script
 build.bat
+
+# Ignore output PDF
+output.pdf

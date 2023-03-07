@@ -1,7 +1,10 @@
 altgraph==0.17.2
+autopep8==2.0.2
 future==0.18.2
 pefile==2021.9.3
+pycodestyle==2.10.0
 pyinstaller==5.0
 pyinstaller-hooks-contrib==2022.4
-PyPDF2==1.27.8
+pypdf==3.5.1
 pywin32-ctypes==0.2.0
+tomli==2.0.1
